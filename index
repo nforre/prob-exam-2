@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probability Exam 2 Cheatsheet & Study Portal</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- KaTeX for crisp LaTeX Math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .tab-active { border-bottom: 3px solid #3b82f6; color: #2563eb; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl">📘</span>
+        <h1 class="text-xl font-bold tracking-tight text-slate-800">Prob Exam 2 Interactive Master Cheatsheet</h1>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm font-semibold">
+        <a href="#distributions" class="hover:text-blue-600 transition">Continuous Distributions</a>
+        <a href="#properties" class="hover:text-blue-600 transition">Calculus & Core Rules</a>
+        <a href="#practice-exam" class="hover:text-blue-600 transition">Practice Exam (1–5)</a>
+        <a href="#interactive-lab" class="hover:text-blue-600 transition">Interactive Lab</a>
+      </nav>
+      <span class="text-xs bg-blue-100 text-blue-700 font-semibold px-2.5 py-1 rounded-full border border-blue-200">Target: Exam 2</span>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-7xl mx-auto px-4 pt-10 pb-6 text-center">
+    <div class="inline-block bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-semibold mb-3">Exam Strategy Notice</div>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">Master Continuous RVs, Transformations & Distributions</h2>
+    <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
+      On the practice exam: pick your best 2 questions out of 1–4 (50 pts each) + Question 5 is a 10-point bonus. Review the rules, verify with the calculators, and master every step!
+    </p>
+  </section>
+
+  <!-- Section 1: Standard Continuous Distributions Reference Table -->
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-12">
+    <section id="distributions" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div class="flex items-center justify-between mb-4 border-b pb-3">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">1. Summary of Standard Continuous Distributions</h3>
+          <p class="text-xs text-slate-500">Core distributions directly covered on your lecture slides and exams.</p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100 border-b border-slate-200 text-slate-700">
+              <th class="p-3 font-semibold">Distribution</th>
+              <th class="p-3 font-semibold">Notation & Support</th>
+              <th class="p-3 font-semibold">PDF $f_X(x)$</th>
+              <th class="p-3 font-semibold">CDF $F_X(x)$</th>
+              <th class="p-3 font-semibold">Mean $E[X]$</th>
+              <th class="p-3 font-semibold">Variance $\text{Var}(X)$</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            <!-- Uniform -->
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-bold text-blue-700">Uniform</td>
+              <td class="p-3">$U(a, b)$, $a \le x \le b$</td>
+              <td class="p-3">$\frac{1}{b - a}$</td>
+              <td class="p-3">$\frac{x - a}{b - a}$</td>
+              <td class="p-3">$\frac{a + b}{2}$</td>
+              <td class="p-3">$\frac{(b - a)^2}{12}$</td>
+            </tr>
+            <!-- Normal -->
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-bold text-blue-700">Normal</td>
+              <td class="p-3">$N(\mu, \sigma^2)$, $x \in \mathbb{R}$</td>
+              <td class="p-3">$\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td>
+              <td class="p-3">$\Phi\left(\frac{x - \mu}{\sigma}\right)$</td>
+              <td class="p-3">$\mu$</td>
+              <td class="p-3">$\sigma^2$</td>
+            </tr>
+            <!-- Exponential -->
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-bold text-blue-700">Exponential</td>
+              <td class="p-3">$\text{Exp}(\lambda)$, $x \ge 0$</td>
+              <td class="p-3">$\lambda e^{-\lambda x}$</td>
+              <td class="p-3">$1 - e^{-\lambda x}$</td>
+              <td class="p-3">$\frac{1}{\lambda}$</td>
+              <td class="p-3">$\frac{1}{\lambda^2}$</td>
+            </tr>
+            <!-- Gamma -->
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-bold text-blue-700">Gamma</td>
+              <td class="p-3">$\text{Gamma}(\alpha, \lambda)$, $x > 0$</td>
+              <td class="p-3">$\frac{\lambda^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\lambda x}$</td>
+              <td class="p-3">$\int_0^x \frac{\lambda^\alpha}{\Gamma(\alpha)} t^{\alpha-1} e^{-\lambda t} dt$</td>
+              <td class="p-3">$\frac{\alpha}{\lambda}$</td>
+              <td class="p-3">$\frac{\alpha}{\lambda^2}$</td>
+            </tr>
+            <!-- Beta -->
+            <tr class="hover:bg-slate-50">
+              <td class="p-3 font-bold text-blue-700">Beta</td>
+              <td class="p-3">$\text{Beta}(\alpha, \beta)$, $0 < x < 1$</td>
+              <td class="p-3">$\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha, \beta)}$</td>
+              <td class="p-3">$\frac{1}{B(\alpha, \beta)} \int_0^x t^{\alpha-1}(1-t)^{\beta-1} dt$</td>
+              <td class="p-3">$\frac{\alpha}{\alpha + \beta}$</td>
+              <td class="p-3">$\frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Connections Callouts -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+          <h4 class="font-bold text-blue-800 text-sm">💡 Gamma & Exponential Sum</h4>
+          <p class="text-xs text-blue-900 mt-1">If $X_1, \dots, X_r \stackrel{iid}{\sim} \text{Exp}(\lambda)$, then $\sum_{i=1}^r X_i \sim \text{Gamma}(r, \lambda)$. Note that $\text{Exp}(\lambda) \equiv \text{Gamma}(1, \lambda)$.</p>
+        </div>
+        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+          <h4 class="font-bold text-emerald-800 text-sm">💡 Normal Standardization</h4>
+          <p class="text-xs text-emerald-900 mt-1">If $X \sim N(\mu, \sigma^2)$, then $Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$. Linear scale: $aX + b \sim N(a\mu + b, a^2\sigma^2)$.</p>
+        </div>
+        <div class="p-4 bg-purple-50 border border-purple-200 rounded-xl">
+          <h4 class="font-bold text-purple-800 text-sm">💡 Gamma Function Values</h4>
+          <p class="text-xs text-purple-900 mt-1">$\Gamma(\alpha + 1) = \alpha\Gamma(\alpha)$. For positive integers $n$, $\Gamma(n) = (n-1)!$. Specifically $\Gamma(1) = 0! = 1$, $\Gamma(2) = 1! = 1$.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Essential Properties & Theorems -->
+    <section id="properties" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <h3 class="text-xl font-bold text-slate-900 mb-4 border-b pb-3">2. Core Principles, Expectation & Calculus Toolkit</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
+        
+        <!-- PDF & CDF Rules -->
+        <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-2">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <span>⚖️</span> PDF & CDF Axioms
+          </h4>
+          <ul class="list-disc list-inside space-y-1 text-slate-700 text-xs leading-relaxed">
+            <li><strong>Non-negativity:</strong> $f_X(x) \ge 0$ for all $x$.</li>
+            <li><strong>Normalization:</strong> $\int_{-\infty}^\infty f_X(x) dx = 1$.</li>
+            <li><strong>Single point probability:</strong> $P(X = c) = 0$. Hence $P(a \le X \le b) = P(a < X < b)$.</li>
+            <li><strong>Fundamental link:</strong> $F_X(x) = \int_{-\infty}^x f(t)dt \implies f_X(x) = F'_X(x)$.</li>
+            <li><strong>Median $m$:</strong> Satisfies $F_X(m) = 0.5$ or $\int_{-\infty}^m f(x)dx = 0.5$.</li>
+          </ul>
+        </div>
+
+        <!-- Moments & Linearity -->
+        <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-2">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <span>📈</span> Moments & Transformations
+          </h4>
+          <ul class="list-disc list-inside space-y-1 text-slate-700 text-xs leading-relaxed">
+            <li><strong>Expectation:</strong> $E[X] = \int_{-\infty}^\infty x f(x) dx$ (requires $\int |x|f(x)dx < \infty$).</li>
+            <li><strong>Non-negative shortcut:</strong> For $X \ge 0$, $E[X] = \int_0^\infty [1 - F_X(x)] dx$.</li>
+            <li><strong>Variance Formula:</strong> $\text{Var}(X) = E[X^2] - (E[X])^2$.</li>
+            <li><strong>Linearity of Expectation:</strong> $E[aX + b] = aE[X] + b$.</li>
+            <li><strong>Linearity of Variance:</strong> $\text{Var}(aX + b) = a^2 \text{Var}(X)$.</li>
+          </ul>
+        </div>
+
+        <!-- Essential Integration -->
+        <div class="p-4 border border-slate-200 rounded-xl bg-slate-50 space-y-2">
+          <h4 class="font-bold text-slate-800 flex items-center gap-2">
+            <span>📐</span> Calculus & Integration Techniques
+          </h4>
+          <ul class="list-disc list-inside space-y-1 text-slate-700 text-xs leading-relaxed">
+            <li><strong>Integration by Parts:</strong> $\int u dv = uv - \int v du$.</li>
+            <li><strong>Standard Form:</strong> $\int x e^{-kx} dx = -\frac{x}{k}e^{-kx} - \frac{1}{k^2}e^{-kx} + C$.</li>
+            <li><strong>Power tails:</strong> $\int_1^\infty \frac{1}{x^p} dx$ converges if and only if $p > 1$.</li>
+            <li><strong>Symmetry:</strong> If $f(x)$ is symmetric about $\alpha$, then $E[X] = \text{median} = \alpha$ (if the mean exists).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Fully Worked Interactive Practice Exam -->
+    <section id="practice-exam" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-8">
+      <div>
+        <h3 class="text-2xl font-black text-slate-900">3. Interactive Practice Exam (Questions 1 – 5)</h3>
+        <p class="text-sm text-slate-600">Step-by-step worked solutions for every problem from your practice exam.</p>
+      </div>
+
+      <!-- Question 1 -->
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-100 p-4 border-b border-slate-200">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-blue-700">Question 1 [50 Points]</span>
+            <span class="text-xs bg-white text-slate-700 px-2.5 py-1 rounded-md border font-medium">Law of Total Probability & Exp Mixtures</span>
+          </div>
+          <p class="text-sm mt-2 text-slate-800">
+            Let $Y \sim \text{Bernoulli}(0.5)$. The conditional distribution of $X$ given $Y$ is:
+            <br />$X \mid Y=1 \sim \text{Exp}(4)$ and $X \mid Y=0 \sim \text{Exp}(2)$.
+          </p>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- (a) -->
+          <div>
+            <h5 class="text-sm font-bold text-slate-800">(a) Write down the two conditional probabilities $P(X \le x \mid Y=1)$ and $P(X \le x \mid Y=0)$.</h5>
+            <button onclick="toggleSol('sol-1a')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-1a" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>For an exponential variable $W \sim \text{Exp}(\lambda)$, the CDF is $F(x) = 1 - e^{-\lambda x}$ for $x \ge 0$, and $0$ for $x < 0$.</p>
+              <p>For $x \ge 0$:</p>
+              <p>$$P(X \le x \mid Y=1) = 1 - e^{-4x}$$</p>
+              <p>$$P(X \le x \mid Y=0) = 1 - e^{-2x}$$</p>
+              <p>(Both are $0$ when $x < 0$).</p>
+            </div>
+          </div>
+
+          <!-- (b) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(b) Use the Law of Total Probability to find $F_X(x) = P(X \le x)$ separately for $x < 0$ and $x \ge 0$.</h5>
+            <button onclick="toggleSol('sol-1b')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-1b" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>By the Law of Total Probability:</p>
+              <p>$$F_X(x) = P(X \le x \mid Y=1)P(Y=1) + P(X \le x \mid Y=0)P(Y=0)$$</p>
+              <p>Given $P(Y=1) = 0.5$ and $P(Y=0) = 0.5$:</p>
+              <ul class="list-disc list-inside mt-1 space-y-1">
+                <li>For $x < 0$: $F_X(x) = 0(0.5) + 0(0.5) = 0$.</li>
+                <li>For $x \ge 0$:
+                  $$F_X(x) = 0.5(1 - e^{-4x}) + 0.5(1 - e^{-2x}) = 1 - \frac{1}{2}e^{-4x} - \frac{1}{2}e^{-2x}$$
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- (c) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(c) Derive the PDF $f_X(x)$ from your CDF.</h5>
+            <button onclick="toggleSol('sol-1c')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-1c" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>Differentiating $F_X(x)$ with respect to $x$ for $x > 0$:</p>
+              <p>$$f_X(x) = \frac{d}{dx}\left[1 - \frac{1}{2}e^{-4x} - \frac{1}{2}e^{-2x}\right] = -\frac{1}{2}(-4e^{-4x}) - \frac{1}{2}(-2e^{-2x}) = 2e^{-4x} + e^{-2x}$$</p>
+              <p>Thus:</p>
+              <p>$$f_X(x) = \begin{cases} 2e^{-4x} + e^{-2x}, & x \ge 0 \\ 0, & x < 0 \end{cases}$$</p>
+            </div>
+          </div>
+
+          <!-- (d) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(d) Calculate $F_X(0)$ and $F_X(1)$. Write down an equation that the median $m$ of $X$ must satisfy.</h5>
+            <button onclick="toggleSol('sol-1d')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-1d" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>• $F_X(0) = 1 - \frac{1}{2}e^{0} - \frac{1}{2}e^{0} = 1 - 0.5 - 0.5 = 0$.</p>
+              <p>• $F_X(1) = 1 - \frac{1}{2}e^{-4} - \frac{1}{2}e^{-2} \approx 1 - 0.00916 - 0.06767 = 0.9232$.</p>
+              <p>• The median $m$ satisfies $F_X(m) = 0.5$:</p>
+              <p>$$1 - \frac{1}{2}e^{-4m} - \frac{1}{2}e^{-2m} = 0.5 \iff e^{-4m} + e^{-2m} = 1$$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-100 p-4 border-b border-slate-200">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-blue-700">Question 2 [50 Points]</span>
+            <span class="text-xs bg-white text-slate-700 px-2.5 py-1 rounded-md border font-medium">Symmetric Triangular Distribution</span>
+          </div>
+          <p class="text-sm mt-2 text-slate-800">
+            Consider $g(x) = 2 - |x - \alpha|$ for $\alpha - 2 \le x \le \alpha + 2$ and $0$ otherwise.
+          </p>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- (a) -->
+          <div>
+            <h5 class="text-sm font-bold text-slate-800">(a) State the two properties of a valid PDF. Check whether $g(x)$ satisfies them.</h5>
+            <button onclick="toggleSol('sol-2a')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-2a" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p><strong>Two properties:</strong> (1) $g(x) \ge 0$ for all $x$, and (2) $\int_{-\infty}^\infty g(x) dx = 1$.</p>
+              <p><strong>Checking:</strong></p>
+              <p>1. On $[\alpha-2, \alpha+2]$, $|x - \alpha| \le 2 \implies 2 - |x - \alpha| \ge 0$. Non-negativity holds.</p>
+              <p>2. Integrate by substitution $u = x - \alpha$ ($du = dx$):</p>
+              <p>$$\int_{\alpha-2}^{\alpha+2} (2 - |x - \alpha|)dx = \int_{-2}^2 (2 - |u|)du = 2\int_0^2 (2 - u)du = 2\left[2(2) - \frac{2^2}{2}\right] = 4 \ne 1$$</p>
+              <p>(Geometrically, triangle base $= 4$, height $= 2$, Area $= \frac{1}{2}(4)(2) = 4$).</p>
+              <p class="text-red-600 font-semibold">Thus, $g(x)$ is NOT a valid PDF because its total area is $4 \ne 1$.</p>
+            </div>
+          </div>
+
+          <!-- (b) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(b) Find $c$ such that $f_X(x) = c(2 - |x - \alpha|)$ on $[\alpha-2, \alpha+2]$ is a valid PDF.</h5>
+            <button onclick="toggleSol('sol-2b')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-2b" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>$$\int_{-\infty}^\infty f_X(x) dx = c \int_{\alpha-2}^{\alpha+2} (2 - |x - \alpha|) dx = c \cdot 4 = 1 \implies c = \frac{1}{4}$$</p>
+            </div>
+          </div>
+
+          <!-- (c) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(c) Calculate $E[X]$ and find the median $m$.</h5>
+            <button onclick="toggleSol('sol-2c')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-2c" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>The function $f_X(x)$ is symmetric about $x = \alpha$ because:</p>
+              <p>$$f_X(\alpha + u) = \frac{1}{4}(2 - |u|) = f_X(\alpha - u)$$</p>
+              <p>By symmetry of the distribution around $\alpha$:</p>
+              <p>• $E[X] = \alpha$</p>
+              <p>• Median $m = \alpha$ (since $\int_{-\infty}^\alpha f_X(x)dx = \frac{1}{2}(2)(1/2) = 0.5$).</p>
+            </div>
+          </div>
+
+          <!-- (d) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(d) Is the distribution symmetric? Identify center. How does changing $\alpha$ affect location & shape?</h5>
+            <button onclick="toggleSol('sol-2d')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-2d" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>• <strong>Yes</strong>, it is symmetric around the center <strong>$x = \alpha$</strong>.</p>
+              <p>• $\alpha$ is a pure <strong>location parameter</strong>. Changing $\alpha$ shifts the entire distribution along the x-axis horizontally (shifts center, mean, median) without changing the spread, height, or shape of the triangle at all.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-100 p-4 border-b border-slate-200">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-blue-700">Question 3 [50 Points]</span>
+            <span class="text-xs bg-white text-slate-700 px-2.5 py-1 rounded-md border font-medium">Normal Distribution Linear Transformations</span>
+          </div>
+          <p class="text-sm mt-2 text-slate-800">
+            Let $X \sim N(4, 4)$ (mean $\mu=4$, variance $\sigma^2=4 \implies \sigma=2$), and let $Y = 2X + 1$.
+          </p>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- (a) -->
+          <div>
+            <h5 class="text-sm font-bold text-slate-800">(a) Explain why $Y$ is normally distributed. Find its mean, variance, and distribution.</h5>
+            <button onclick="toggleSol('sol-3a')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-3a" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>Any linear transformation $aX + b$ of a normal random variable remains normally distributed.</p>
+              <p>• $E[Y] = E[2X + 1] = 2E[X] + 1 = 2(4) + 1 = 9$</p>
+              <p>• $\text{Var}(Y) = \text{Var}(2X + 1) = 2^2 \text{Var}(X) = 4(4) = 16$</p>
+              <p>• Distribution: <strong>$Y \sim N(9, 16)$</strong> (standard deviation $\sigma_Y = \sqrt{16} = 4$).</p>
+            </div>
+          </div>
+
+          <!-- (b) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(b) Suppose $Z = dY - c$, with $d > 0$. Determine $d$ and $c$ such that $Z \sim N(0, 1)$.</h5>
+            <button onclick="toggleSol('sol-3b')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-3b" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>Standardizing $Y \sim N(9, 16)$ gives:</p>
+              <p>$$Z = \frac{Y - \mu_Y}{\sigma_Y} = \frac{Y - 9}{4} = \frac{1}{4}Y - \frac{9}{4}$$</p>
+              <p>Matching with $Z = dY - c$:</p>
+              <p>$$d = \frac{1}{4} = 0.25, \quad c = \frac{9}{4} = 2.25$$</p>
+            </div>
+          </div>
+
+          <!-- (c) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(c) Express $P(Y \le y)$ in terms of $\Phi$. Then calculate $P(Y \le 9)$.</h5>
+            <button onclick="toggleSol('sol-3c')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-3c" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>$$P(Y \le y) = P\left(\frac{Y - 9}{4} \le \frac{y - 9}{4}\right) = \Phi\left(\frac{y - 9}{4}\right)$$</p>
+              <p>For $y = 9$:</p>
+              <p>$$P(Y \le 9) = \Phi\left(\frac{9 - 9}{4}\right) = \Phi(0) = 0.5$$</p>
+            </div>
+          </div>
+
+          <!-- (d) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(d) Express $q_Y(0.95)$ in terms of mean and SD of $Y$, using $z_{0.95} \approx 1.645$. Calculate it.</h5>
+            <button onclick="toggleSol('sol-3d')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-3d" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>The quantile equation is:</p>
+              <p>$$q_Y(0.95) = \mu_Y + z_{0.95}\sigma_Y$$</p>
+              <p>Substituting $\mu_Y = 9$ and $\sigma_Y = 4$:</p>
+              <p>$$q_Y(0.95) = 9 + 1.645(4) = 9 + 6.58 = 15.58$$</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-100 p-4 border-b border-slate-200">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-blue-700">Question 4 [50 Points]</span>
+            <span class="text-xs bg-white text-slate-700 px-2.5 py-1 rounded-md border font-medium">Heavy-Tailed Distribution & Moments</span>
+          </div>
+          <p class="text-sm mt-2 text-slate-800">
+            Consider $f_X(x) = \frac{2}{(1+x)^3}$ for $x \ge 0$, and $0$ for $x < 0$.
+          </p>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- (a) -->
+          <div>
+            <h5 class="text-sm font-bold text-slate-800">(a) Does $E[X]$ exist as a finite number? If so, calculate it.</h5>
+            <button onclick="toggleSol('sol-4a')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-4a" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>$$E[X] = \int_0^\infty x \frac{2}{(1+x)^3} dx$$</p>
+              <p>Let $u = 1 + x \implies x = u - 1$, $dx = du$ with bounds from $1$ to $\infty$:</p>
+              <p>$$2 \int_1^\infty \frac{u - 1}{u^3} du = 2 \int_1^\infty \left(u^{-2} - u^{-3}\right) du = 2\left[ -u^{-1} + \frac{1}{2}u^{-2} \right]_1^\infty = 2\left[0 - \left(-1 + \frac{1}{2}\right)\right] = 2(0.5) = 1$$</p>
+              <p><strong>Yes</strong>, $E[X]$ is finite and equals <strong>$1$</strong>.</p>
+            </div>
+          </div>
+
+          <!-- (b) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(b) Does $E[X^2]$ exist as a finite number? If so, calculate it. If not, determine whether infinite or undefined.</h5>
+            <button onclick="toggleSol('sol-4b')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-4b" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>$$E[X^2] = \int_0^\infty x^2 \frac{2}{(1+x)^3} dx$$</p>
+              <p>As $x \to \infty$, the integrand behaves like $\frac{2x^2}{x^3} = \frac{2}{x}$.</p>
+              <p>Since $\int_1^\infty \frac{1}{x} dx$ diverges logarithmically ($\ln x \to \infty$), the integral diverges.</p>
+              <p>Since the integrand is strictly non-negative, $E[X^2] = +\infty$. <strong>It is infinite (does not exist as a finite number).</strong></p>
+            </div>
+          </div>
+
+          <!-- (c) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(c) Write the integral for $E[|X|^p]$ and check if finite for $p = 1/2$ and $p = 3$.</h5>
+            <button onclick="toggleSol('sol-4c')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-4c" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>Because $X \ge 0$, $|X| = X$. Thus:</p>
+              <p>$$E[|X|^p] = \int_0^\infty \frac{2x^p}{(1+x)^3} dx$$</p>
+              <p>For large $x$, the tail integrand behaves as $\frac{2 x^p}{x^3} = 2 x^{p-3} = \frac{2}{x^{3-p}}$.</p>
+              <p>By the $p$-series test, $\int_1^\infty \frac{1}{x^k} dx$ converges if and only if $k > 1$. Here $k = 3 - p$.</p>
+              <p>• For $p = 1/2$: $3 - p = 2.5 > 1 \implies$ <strong>Finite</strong>.</p>
+              <p>• For $p = 3$: $3 - p = 0 \le 1 \implies$ <strong>Infinite</strong> ($+\infty$).</p>
+            </div>
+          </div>
+
+          <!-- (d) -->
+          <div class="border-t pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(d) What is the general rule on $p$ for $E[|X|^p]$ to be finite?</h5>
+            <button onclick="toggleSol('sol-4d')" class="mt-2 text-xs text-blue-600 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-4d" class="hidden mt-2 p-3 bg-blue-50/60 rounded-lg text-sm space-y-1 border border-blue-100">
+              <p>For large $x$, convergence of $\int_c^\infty x^{p-3} dx$ requires the exponent $p - 3 < -1$, which means:</p>
+              <p>$$3 - p > 1 \implies p < 2$$</p>
+              <p>Near $x=0$, $x^p$ is integrable for any positive real $p > 0$. Hence $E[|X|^p]$ is finite if and only if <strong>$0 < p < 2$</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 5 (Bonus) -->
+      <div class="border border-emerald-300 bg-emerald-50/30 rounded-xl overflow-hidden">
+        <div class="bg-emerald-100/70 p-4 border-b border-emerald-200">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-emerald-800">Question 5 [10 Bonus Points]</span>
+            <span class="text-xs bg-emerald-200 text-emerald-900 px-2.5 py-1 rounded-md font-semibold">Gamma Distribution Special Case</span>
+          </div>
+          <p class="text-sm mt-2 text-slate-800">
+            Consider $f_X(x) = c x e^{-x}$ for $x \ge 0$, and $0$ for $x < 0$ ($c > 0$).
+          </p>
+        </div>
+        <div class="p-4 space-y-4">
+          <!-- (a) -->
+          <div>
+            <h5 class="text-sm font-bold text-slate-800">(a) [3 pts] Find $c$ that makes $f_X(x)$ a valid PDF. Write it in terms of a gamma function.</h5>
+            <button onclick="toggleSol('sol-5a')" class="mt-2 text-xs text-emerald-700 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-5a" class="hidden mt-2 p-3 bg-white rounded-lg text-sm space-y-1 border border-emerald-200">
+              <p>Recall $\Gamma(\alpha) = \int_0^\infty x^{\alpha-1} e^{-x} dx$. For $\alpha = 2$:</p>
+              <p>$$\int_0^\infty x e^{-x} dx = \int_0^\infty x^{2-1} e^{-x} dx = \Gamma(2) = (2-1)! = 1$$</p>
+              <p>Thus $c \int_0^\infty x e^{-x} dx = c \Gamma(2) = c(1) = 1 \implies c = \frac{1}{\Gamma(2)} = 1$.</p>
+            </div>
+          </div>
+
+          <!-- (b) -->
+          <div class="border-t border-emerald-200 pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(b) [3 pts] Calculate $P(0 \le X \le 1)$.</h5>
+            <button onclick="toggleSol('sol-5b')" class="mt-2 text-xs text-emerald-700 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-5b" class="hidden mt-2 p-3 bg-white rounded-lg text-sm space-y-1 border border-emerald-200">
+              <p>Using integration by parts ($\int x e^{-x} dx = -x e^{-x} - e^{-x}$):</p>
+              <p>$$P(0 \le X \le 1) = \int_0^1 x e^{-x} dx = \left[ -(x + 1)e^{-x} \right]_0^1 = -2e^{-1} - (-1e^0) = 1 - 2e^{-1} \approx 0.2642$$</p>
+            </div>
+          </div>
+
+          <!-- (c) -->
+          <div class="border-t border-emerald-200 pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(c) [2 pts] Calculate $E[e^{-2X}]$.</h5>
+            <button onclick="toggleSol('sol-5c')" class="mt-2 text-xs text-emerald-700 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-5c" class="hidden mt-2 p-3 bg-white rounded-lg text-sm space-y-1 border border-emerald-200">
+              <p>$$E[e^{-2X}] = \int_0^\infty e^{-2x} (x e^{-x}) dx = \int_0^\infty x e^{-3x} dx$$</p>
+              <p>Substitute $u = 3x \implies x = \frac{u}{3}, dx = \frac{du}{3}$:</p>
+              <p>$$E[e^{-2X}] = \int_0^\infty \frac{u}{3} e^{-u} \frac{du}{3} = \frac{1}{9}\int_0^\infty u e^{-u} du = \frac{\Gamma(2)}{9} = \frac{1}{9}$$</p>
+            </div>
+          </div>
+
+          <!-- (d) -->
+          <div class="border-t border-emerald-200 pt-3">
+            <h5 class="text-sm font-bold text-slate-800">(d) [2 pts] Is the distribution symmetric about its mean? Briefly explain.</h5>
+            <button onclick="toggleSol('sol-5d')" class="mt-2 text-xs text-emerald-700 hover:underline font-semibold">▶ Toggle Solution</button>
+            <div id="sol-5d" class="hidden mt-2 p-3 bg-white rounded-lg text-sm space-y-1 border border-emerald-200">
+              <p><strong>No.</strong> It is right-skewed (positively skewed). Its support is bounded below at $0$ but unbounded above ($[0, \infty)$), with an exponential right tail that stretches to infinity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Interactive Study & Calculation Lab -->
+    <section id="interactive-lab" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-6">
+      <div>
+        <h3 class="text-xl font-bold text-slate-900">4. Interactive Calculation & Concept Verifier</h3>
+        <p class="text-xs text-slate-500">Test parameters on the fly to build intuition for your exam.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Widget 1: Normal Calculator -->
+        <div class="border p-4 rounded-xl bg-slate-50 space-y-3">
+          <h4 class="font-bold text-sm text-slate-800">Normal Transformation Calculator</h4>
+          <p class="text-xs text-slate-600">If $X \sim N(\mu, \sigma^2)$ and $Y = aX + b$, compute $E[Y]$, $\text{Var}(Y)$, and $\text{SD}(Y)$:</p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div>
+              <label class="block text-slate-600">Mean $\mu$</label>
+              <input id="norm-mu" type="number" value="4" class="w-full p-1.5 border rounded" />
+            </div>
+            <div>
+              <label class="block text-slate-600">Variance $\sigma^2$</label>
+              <input id="norm-var" type="number" value="4" class="w-full p-1.5 border rounded" />
+            </div>
+            <div>
+              <label class="block text-slate-600">Multiplier $a$</label>
+              <input id="norm-a" type="number" value="2" class="w-full p-1.5 border rounded" />
+            </div>
+            <div>
+              <label class="block text-slate-600">Shift $b$</label>
+              <input id="norm-b" type="number" value="1" class="w-full p-1.5 border rounded" />
+            </div>
+          </div>
+          <button onclick="calcNormal()" class="w-full bg-blue-600 text-white font-semibold py-1.5 rounded-lg text-xs hover:bg-blue-700">Calculate $Y$ Stats</button>
+          <div id="norm-result" class="p-2 bg-white rounded border text-xs text-slate-800 font-mono">
+            $E[Y] = 9$, $\text{Var}(Y) = 16$, $\text{SD}(Y) = 4$
+          </div>
+        </div>
+
+        <!-- Widget 2: Exponential Mixture CDF -->
+        <div class="border p-4 rounded-xl bg-slate-50 space-y-3">
+          <h4 class="font-bold text-sm text-slate-800">Question 1 Exp Mixture CDF Checker</h4>
+          <p class="text-xs text-slate-600">Evaluate $F_X(x) = 1 - 0.5e^{-4x} - 0.5e^{-2x}$ at any value $x$:</p>
+          <div class="text-xs">
+            <label class="block text-slate-600">Evaluate at $x$:</label>
+            <input id="mix-x" type="number" step="0.1" value="1" class="w-full p-1.5 border rounded mt-1" />
+          </div>
+          <button onclick="calcMixCDF()" class="w-full bg-blue-600 text-white font-semibold py-1.5 rounded-lg text-xs hover:bg-blue-700">Evaluate $F_X(x)$</button>
+          <div id="mix-result" class="p-2 bg-white rounded border text-xs text-slate-800 font-mono">
+            $F_X(1) \approx 0.9232$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Rapid Fire Self-Quiz -->
+    <section class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-2xl p-6 space-y-4">
+      <h3 class="text-xl font-bold">⚡ Rapid-Fire Concept Check</h3>
+      <p class="text-xs text-blue-200">Test these high-frequency exam concepts:</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <p class="font-bold">Q1: For any continuous RV $X$, what is $P(X = 3)$?</p>
+          <button onclick="revealQuiz('qz1')" class="mt-2 text-blue-300 underline font-semibold">Show Answer</button>
+          <p id="qz1" class="hidden mt-1 text-amber-300 font-bold">Exactly 0! Continuous probabilities over singletons are always 0.</p>
+        </div>
+
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <p class="font-bold">Q2: If $\text{Var}(X) = 5$, what is $\text{Var}(-3X + 7)$?</p>
+          <button onclick="revealQuiz('qz2')" class="mt-2 text-blue-300 underline font-semibold">Show Answer</button>
+          <p id="qz2" class="hidden mt-1 text-amber-300 font-bold">$(-3)^2 \cdot \text{Var}(X) = 9 \times 5 = 45$.</p>
+        </div>
+
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <p class="font-bold">Q3: Why does a standard Cauchy distribution have no mean?</p>
+          <button onclick="revealQuiz('qz3')" class="mt-2 text-blue-300 underline font-semibold">Show Answer</button>
+          <p id="qz3" class="hidden mt-1 text-amber-300 font-bold">$E[|X|] = \infty$. The split integral gives $\infty - \infty$, which is undefined.</p>
+        </div>
+
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <p class="font-bold">Q4: If $X \sim \text{Exp}(4)$, what is $E[X]$?</p>
+          <button onclick="revealQuiz('qz4')" class="mt-2 text-blue-300 underline font-semibold">Show Answer</button>
+          <p id="qz4" class="hidden mt-1 text-amber-300 font-bold">$1/\lambda = 1/4 = 0.25$.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-4 py-8 text-center text-xs text-slate-500 border-t border-slate-200 mt-12">
+    Review material compiled from Texas State University Single-Variable Calculus & Continuous Distributions course notes.
+  </footer>
+
+  <script>
+    // Solution toggler
+    function toggleSol(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+      if (window.renderMathInElement) {
+        renderMathInElement(el, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});
+      }
+    }
+
+    // Quiz answer revealer
+    function revealQuiz(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    // Normal calculation widget
+    function calcNormal() {
+      const mu = parseFloat(document.getElementById('norm-mu').value) || 0;
+      const vr = parseFloat(document.getElementById('norm-var').value) || 0;
+      const a = parseFloat(document.getElementById('norm-a').value) || 0;
+      const b = parseFloat(document.getElementById('norm-b').value) || 0;
+
+      const newMu = a * mu + b;
+      const newVar = (a * a) * vr;
+      const newSd = Math.sqrt(newVar);
+
+      document.getElementById('norm-result').innerText = 
+        `E[Y] = ${newMu.toFixed(3)}, Var(Y) = ${newVar.toFixed(3)}, SD(Y) = ${newSd.toFixed(3)}`;
+    }
+
+    // Mixture CDF widget
+    function calcMixCDF() {
+      const x = parseFloat(document.getElementById('mix-x').value);
+      let fx = 0;
+      if (x < 0) {
+        fx = 0;
+      } else {
+        fx = 1 - 0.5 * Math.exp(-4 * x) - 0.5 * Math.exp(-2 * x);
+      }
+      document.getElementById('mix-result').innerText = `FX(${x}) = ${fx.toFixed(5)}`;
+    }
+  </script>
+</body>
+</html>
